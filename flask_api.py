@@ -8,6 +8,10 @@ api = Api(app)
 
 class Users(Resource):
     def get(self):
+        #parser = reqparse.RequestParser()  # initialize
+        #parser.add_argument("userId", required = True)  # add args
+        #args = parser.parse_args()
+        #args.get("userId")
         data = pd.read_csv("users.csv")  # read CSV
         data = data.to_dict()  # convert dataframe to dictionary
         return {"data": data}, 200  # return data and 200 OK code
@@ -21,5 +25,5 @@ class Locations(Resource):
 api.add_resource(Users, "/users")  # "/users" is our entry point for Users
 api.add_resource(Locations, "/locations")  # and "/locations" is our entry point for Locations
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(host = "localhost", debug = True)
